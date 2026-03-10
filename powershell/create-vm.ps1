@@ -1,6 +1,6 @@
 New-VM -Name "rhel2" -Generation 2 -MemoryStartupBytes 8GB `
-       -NewVHDPath "C:\Users\U01MCA\vms\rhel2.vhdx" `
-       -NewVHDSizeBytes 40GB -SwitchName "Default Switch"
+       -NewVHDPath "$HOME\rhel2.vhdx" `
+       -NewVHDSizeBytes 20GB -SwitchName "Default Switch"
 
 # Add second NIC
 Add-VMNetworkAdapter -VMName "rhel2" -SwitchName "External" -Name "ExternalNIC"
@@ -8,7 +8,7 @@ Add-VMNetworkAdapter -VMName "rhel2" -SwitchName "External" -Name "ExternalNIC"
 # Disable Secure Boot + attach ISO
 Set-VMFirmware -VMName "rhel2" -EnableSecureBoot Off
 Add-VMDvdDrive -VMName "rhel2"
-Set-VMDvdDrive -VMName "rhel2" -Path "C:\Users\U01MCA\Downloads\rhel-9.7-x86_64-dvd.iso"
+Set-VMDvdDrive -VMName "rhel2" -Path "$HOME\Downloads\rhel-9.7-x86_64-dvd.iso"
 
 # Set boot order: DVD → HDD → NIC
 $dvd = Get-VMDvdDrive -VMName "rhel2"
